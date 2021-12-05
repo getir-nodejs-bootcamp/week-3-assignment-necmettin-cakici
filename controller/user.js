@@ -9,7 +9,7 @@ const getAllUsers = (req, res) => {
 
 const getUser = (req, res) => {
   const { id } = req.params;
-  let user = users.find((el) => el.id === Number(id));
+  let user = users.find((user) => user.id === Number(id));
   if (user) {
     res.status(200).send(user);
   } else {
@@ -35,7 +35,7 @@ const createUser = (req, res) => {
 const updateUser = (req, res) => {
   const { id } = req.params;
   let { userInfo } = req.body;
-  let index = users.findIndex((el) => el.id === Number(id));
+  let index = users.findIndex((user) => user.id === Number(id));
   console.log(`index`, index);
   if (index !== -1) {
     if (userInfo.username && userInfo.password) {
@@ -52,7 +52,7 @@ const updateUser = (req, res) => {
 const patchUser = (req, res) => {
   const { id } = req.params;
   let { userInfo } = req.body;
-  let index = users.findIndex((el) => el.id === Number(id));
+  let index = users.findIndex((user) => user.id === Number(id));
   console.log(`index`, index);
   if (index !== -1) {
     users[index] = {
@@ -68,9 +68,9 @@ const patchUser = (req, res) => {
 
 const deleteUser = (req, res) => {
   const { id } = req.params;
-  let index = users.findIndex((el) => el.id === Number(id));
+  let index = users.findIndex((user) => user.id === Number(id));
   if (index !== -1) {
-    users = users.filter((el) => el.id !== Number(id));
+    users = users.filter((user) => user.id !== Number(id));
     res.status(200).send(users);
   } else {
     res.status(404).send("Böyle bir kullanıcı yok.");

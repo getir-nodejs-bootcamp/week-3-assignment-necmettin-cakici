@@ -5,17 +5,21 @@ var {
 
 // Tüm filmleri getiren func
 const getAllMovies = (req, res) => {
-  res.status(200).send(movies);
+  if (!movies) {
+    res.status(404).send("Film yok");
+  } else {
+    res.status(200).send(movies);
+  }
 };
 
 // Routerdan gelen paramı çekip id ye göre filmi getiren func
 const getMovie = (req, res) => {
   const { id } = req.params;
-  let movie = movies.find((el) => el.id === Number(id));
+  let movie = movies.find((movie) => movie.id === Number(id));
   if (movie) {
     res.status(200).send(movies);
   } else {
-    res.status(404).send("Böyle bir kullanıcı yok.");
+    res.status(404).send("Böyle bir film yok.");
   }
 };
 
